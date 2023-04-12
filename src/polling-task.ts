@@ -59,7 +59,7 @@ function resolveAsyncReturn<T>(
 	return res;
 }
 
-export interface IPoolingOptions<T, I, R = JobStatusInfo<I>> {
+export interface IPollingOptions<T, I, R = JobStatusInfo<I>> {
 	jobFactory?: () => AsyncReturn<T>;
 	checkJobFn: (jobData: T) => AsyncReturn<JobStatusInfo<I>>;
 	doFinished?: (info: JobStatusInfo<I>, jobData: T) => AsyncReturn<R>;
@@ -69,7 +69,7 @@ export interface IPoolingOptions<T, I, R = JobStatusInfo<I>> {
 	checkInterval?: number;
 }
 
-export class RxPoolingTask<T, I, R = I> {
+export class RxPollingTask<T, I, R = I> {
 	private _state: JobStateType = null;
 
 	private set state(value) {
@@ -120,7 +120,7 @@ export class RxPoolingTask<T, I, R = I> {
 
 	private _destroySubject = new Subject<void>();
 
-	constructor(private options: IPoolingOptions<T, I, R>) {}
+	constructor(private options: IPollingOptions<T, I, R>) {}
 
 	submit(): Observable<R> {
 		this._checkDestroyed();
@@ -188,7 +188,7 @@ export class RxPoolingTask<T, I, R = I> {
 	}
 
 	clone() {
-		return new RxPoolingTask(this.options);
+		return new RxPollingTask(this.options);
 	}
 
 	private _checkDestroyed() {

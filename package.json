@@ -1,9 +1,9 @@
 {
-  "name": "@rxjs-toolkit/pooling",
+  "name": "@rxjs-toolkit/polling",
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lucasdornelasv/rxjs-pooling"
+    "url": "https://github.com/lucasdornelasv/rxjs-polling"
   },
   "author": "Lucas Dornelas",
   "license": "MIT",
